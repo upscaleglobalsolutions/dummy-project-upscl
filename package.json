@@ -1,0 +1,17 @@
+{
+  "name": "upscale-global-solutions",
+  "version": "1.0.0",
+  "description": "Upscale Global Solutions Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.22.2",
+    "nodemailer": "^9.0.5"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
+  }
+}
