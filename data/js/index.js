@@ -28,3 +28,48 @@ dropdown.addEventListener("click", function (e) {
     this.parentElement.classList.toggle("active");
   }
 });
+
+// contact us form js
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    const data = {
+      name: formData.get("fullname"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      phone: formData.get("phone"),
+      service: formData.get("service"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        contactForm.reset();
+      } else {
+        alert(result.error || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Unable to send message. Please try again.");
+    }
+  });
+}
